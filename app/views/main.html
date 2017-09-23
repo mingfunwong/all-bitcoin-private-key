@@ -1,0 +1,29 @@
+<div class="row">
+
+<table class="table table-hover table-condensed">
+  <caption>{{ page }} of {{ maxPage }}</caption>
+  <thead>
+    <tr>
+      <th>privateKey</th>
+      <th>addressUnCompressed</th>
+      <th>addressCompressed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="x in items" title="{{ x.hex }}">
+      <td>{{ x.privateKey }}</td>
+      <td>{{ x.addressUnCompressed }}</td>
+      <td>{{ x.addressCompressed }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><a href="#!/page/{{ prev }}" ng-click="toTop()"><span aria-hidden="true">&larr;</span> Older</a></li>
+    <li class="next"><a href="#!/page/{{ next }}" ng-click="toTop()">Newer <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>
+
+
+</div>
