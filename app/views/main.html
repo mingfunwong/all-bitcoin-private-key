@@ -12,8 +12,8 @@
   <tbody>
     <tr ng-repeat="x in items" title="{{ x.hex }}">
       <td>{{ x.privateKey }}</td>
-      <td>{{ x.addressUnCompressed }}</td>
-      <td>{{ x.addressCompressed }}</td>
+      <td><a href="https://btc.com/{{ x.addressUnCompressed }}" target="_blank">{{ x.addressUnCompressed }}</a></td>
+      <td><a href="https://btc.com/{{ x.addressCompressed }}" target="_blank">{{ x.addressCompressed }}</a></td>
     </tr>
   </tbody>
 </table>
