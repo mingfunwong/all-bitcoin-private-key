@@ -14,11 +14,11 @@ angular.module('allKeyApp')
         url:  '/',
         title: ''
       },
-      {
-        name:   'Word',
-        url:    '/word',
-        title:  ''
-      },
+      // {
+      //   name:   'Word',
+      //   url:    '/word',
+      //   title:  ''
+      // },
       {
         name:   'About',
         url:    '/about',
