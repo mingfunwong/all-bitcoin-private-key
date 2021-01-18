@@ -1,0 +1,84 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults || isError">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    <div class="example-rate-limit-reached" *ngIf="isError">Error.</div>
+  </div>
+
+  <div class="example-table-container">
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+      <ng-container matColumnDef="privateKey">
+        <th mat-header-cell *matHeaderCellDef>privateKey</th>
+        <td mat-cell *matCellDef="let element">{{ element.privateKey }}</td>
+      </ng-container>
+      <ng-container matColumnDef="addressUnCompressed">
+        <th mat-header-cell *matHeaderCellDef>addressUnCompressed</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            mat-button
+            color="primary"
+            href="https://btc.com/{{ element.addressUnCompressed }}"
+            target="_blank"
+            >{{ element.addressUnCompressed }}</a
+          >
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addressUnCompressedBalance">
+        <th mat-header-cell *matHeaderCellDef>addressUnCompressedBalance</th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.addressUnCompressedBalance
+              | balance: element.addressUnCompressed:"balance"
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addressUnCompressedReceived">
+        <th mat-header-cell *matHeaderCellDef>addressUnCompressedReceived</th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.addressUnCompressedReceived
+              | balance: element.addressUnCompressed:"received"
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addressCompressed">
+        <th mat-header-cell *matHeaderCellDef>addressCompressed</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            mat-button
+            color="primary"
+            href="https://btc.com/{{ element.addressCompressed }}"
+            target="_blank"
+            >{{ element.addressCompressed }}</a
+          >
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addressCompressedBalance">
+        <th mat-header-cell *matHeaderCellDef>addressCompressedBalance</th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.addressCompressedBalance
+              | balance: element.addressCompressed:"balance"
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="addressCompressedReceived">
+        <th mat-header-cell *matHeaderCellDef>addressCompressedReceived</th>
+        <td mat-cell *matCellDef="let element">
+          {{
+            element.addressCompressedReceived
+              | balance: element.addressCompressed:"received"
+          }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="paginator">
+      <button mat-raised-button (click)="onOlder()">← Older</button>
+      <div>{{ page }} of {{ maxPage }}</div>
+      <button mat-raised-button (click)="onNewer()">Newer →</button>
+    </div>
+  </div>
+</div>
