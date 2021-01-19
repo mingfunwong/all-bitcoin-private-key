@@ -1,4 +1,5 @@
 export interface IAllKey {
+  id: string;
   privateKey: string;
   addressUnCompressed: string;
   addressUnCompressedBalance: string;

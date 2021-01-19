@@ -14,13 +14,18 @@ export class AllKeyService {
       const itesm: IAllKey[] = [];
       const addresses: string[] = [];
       for (let index = 0; index < limitPerPage; index++) {
-        const number = new BigNumber(page).multipliedBy(index + 1).toString(16);
-        const addressUnCompressed = this.getAddress(number, false);
-        const addressCompressed = this.getAddress(number, true);
-        const privateKey = this.getPrivateKey(number);
+        const id = new BigNumber(page)
+          .minus(1)
+          .multipliedBy(limitPerPage)
+          .plus(index + 1)
+          .toString(16);
+        const addressUnCompressed = this.getAddress(id, false);
+        const addressCompressed = this.getAddress(id, true);
+        const privateKey = this.getPrivateKey(id);
         addresses.push(addressUnCompressed);
         addresses.push(addressCompressed);
         itesm.push({
+          id,
           privateKey,
           addressUnCompressed,
           addressUnCompressedBalance: null,
@@ -35,16 +40,16 @@ export class AllKeyService {
     });
   }
 
-  private getAddress(number: string, compressed: boolean) {
-    const bytes = Crypto.util.hexToBytes(number);
+  private getAddress(id: string, compressed: boolean) {
+    const bytes = Crypto.util.hexToBytes(id);
     const btcKey = new Bitcoin.ECKey(bytes);
     btcKey.compressed = compressed;
     const address = btcKey.getBitcoinAddress().toString();
     return address;
   }
 
-  private getPrivateKey(number: string) {
-    const bytes = Crypto.util.hexToBytes(number.toString());
+  private getPrivateKey(id: string) {
+    const bytes = Crypto.util.hexToBytes(id.toString());
     const btcKey = new Bitcoin.ECKey(bytes);
     const privateKey = btcKey.getExportedPrivateKey();
     return privateKey;
