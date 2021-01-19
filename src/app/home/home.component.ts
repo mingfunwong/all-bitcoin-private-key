@@ -13,7 +13,6 @@ import { IAllKey } from '../types/IAllKey';
 })
 export class HomeComponent implements OnInit {
   displayedColumns: string[] = [
-    'id',
     'privateKey',
     'addressUnCompressed',
     'addressUnCompressedBalance',
