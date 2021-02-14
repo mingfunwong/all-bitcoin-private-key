@@ -15,7 +15,7 @@
         <td mat-cell *matCellDef="let element">{{ element.privateKey }}</td>
       </ng-container>
       <ng-container matColumnDef="addressUnCompressed">
-        <th mat-header-cell *matHeaderCellDef>addressUnCompressed</th>
+        <th mat-header-cell *matHeaderCellDef>address</th>
         <td mat-cell *matCellDef="let element">
           <a
             mat-button
@@ -27,7 +27,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="addressUnCompressedBalance">
-        <th mat-header-cell *matHeaderCellDef>addressUnCompressedBalance</th>
+        <th mat-header-cell *matHeaderCellDef>balance</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.addressUnCompressedBalance
@@ -36,7 +36,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="addressUnCompressedReceived">
-        <th mat-header-cell *matHeaderCellDef>addressUnCompressedReceived</th>
+        <th mat-header-cell *matHeaderCellDef>received</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.addressUnCompressedReceived
@@ -45,7 +45,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="addressCompressed">
-        <th mat-header-cell *matHeaderCellDef>addressCompressed</th>
+        <th mat-header-cell *matHeaderCellDef>address</th>
         <td mat-cell *matCellDef="let element">
           <a
             mat-button
@@ -57,7 +57,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="addressCompressedBalance">
-        <th mat-header-cell *matHeaderCellDef>addressCompressedBalance</th>
+        <th mat-header-cell *matHeaderCellDef>balance</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.addressCompressedBalance
@@ -66,7 +66,7 @@
         </td>
       </ng-container>
       <ng-container matColumnDef="addressCompressedReceived">
-        <th mat-header-cell *matHeaderCellDef>addressCompressedReceived</th>
+        <th mat-header-cell *matHeaderCellDef>received</th>
         <td mat-cell *matCellDef="let element">
           {{
             element.addressCompressedReceived
