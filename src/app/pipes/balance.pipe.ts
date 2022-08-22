@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'balance',
 })
 export class BalancePipe implements PipeTransform {
-  transform(value: string | number) {
+  transform(value: number | null) {
     return value !== null
       ? parseFloat(value.toString()) / Math.pow(10, 8) + ' BTC'
       : 'Loading...';

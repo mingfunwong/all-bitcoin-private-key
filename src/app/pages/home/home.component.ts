@@ -13,15 +13,16 @@ import { IBlockchain } from 'src/app/types/IBlockchain';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  displayedColumns: (keyof IAllKey)[] = [
-    'addressCompressed',
-    'addressUnCompressed',
-    'addressUnCompressedBalance',
-    'addressUnCompressedReceived',
-    'addressCompressed',
-    'addressCompressedBalance',
-    'addressCompressedReceived',
+  tableHeaderColumns: string[] = [
+    'privateKey',
+    'address',
+    'balance',
+    'received',
+    'compressed',
+    'balance',
+    'received',
   ];
+
   items: IAllKey[] = [];
 
   maxNumber = new BigNumber(

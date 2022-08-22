@@ -1,22 +1,65 @@
-<table>
-  <thead>
-    <tr>
-      <th *ngFor="let displayedColumn of displayedColumns">
-        {{ displayedColumn }}
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of items">
-      <td *ngFor="let displayedColumn of displayedColumns">
-        {{ item[displayedColumn] }}
-      </td>
-    </tr>
-  </tbody>
-</table>
+<app-layout>
+  <table class="table-auto w-full font-mono font-light">
+    <thead class="text-gray-500 border-b border-b-slate-200">
+      <tr>
+        <td *ngFor="let column of tableHeaderColumns" class="px-4 py-2">
+          {{ column }}
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of items"
+        class="hover:bg-slate-100 border-b border-b-slate-100"
+      >
+        <td class="px-4 py-2">{{ item.privateKey }}</td>
+        <td class="px-4 py-2">
+          <a
+            href="https://www.blockchain.com/btc/address/{{
+              item.addressUnCompressed
+            }}"
+            target="_blank"
+            class="text-blue-500 hover:text-blue-900 hover:underline"
+            >{{ item.addressUnCompressed }}</a
+          >
+        </td>
+        <td class="px-4 py-2">
+          {{ item.addressUnCompressedBalance | balance }}
+        </td>
+        <td class="px-4 py-2">
+          {{ item.addressUnCompressedReceived | balance }}
+        </td>
+        <td class="px-4 py-2">
+          <a
+            href="https://www.blockchain.com/btc/address/{{
+              item.addressCompressed
+            }}"
+            target="_blank"
+            class="text-blue-500 hover:text-blue-900 hover:underline"
+            >{{ item.addressCompressed }}</a
+          >
+        </td>
+        <td class="px-4 py-2">{{ item.addressCompressedBalance | balance }}</td>
+        <td class="px-4 py-2">
+          {{ item.addressCompressedReceived | balance }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-<div>
-  <button (click)="onOlder()">← Older</button>
-  <div>{{ page }} of {{ maxPage }}</div>
-  <button (click)="onNewer()">Newer →</button>
-</div>
+  <div class="flex justify-between p-4">
+    <button
+      (click)="onOlder()"
+      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 focus:ring-2 focus:ring-slate-200 rounded"
+    >
+      ← Older
+    </button>
+    <div>{{ page }} of {{ maxPage }}</div>
+    <button
+      (click)="onNewer()"
+      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 focus:ring-2 focus:ring-slate-200 rounded"
+    >
+      Newer →
+    </button>
+  </div>
+</app-layout>
