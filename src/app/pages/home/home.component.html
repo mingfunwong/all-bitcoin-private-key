@@ -1,1 +1,22 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
+<table>
+  <thead>
+    <tr>
+      <th *ngFor="let displayedColumn of displayedColumns">
+        {{ displayedColumn }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td *ngFor="let displayedColumn of displayedColumns">
+        {{ item[displayedColumn] }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button (click)="onOlder()">← Older</button>
+  <div>{{ page }} of {{ maxPage }}</div>
+  <button (click)="onNewer()">Newer →</button>
+</div>
