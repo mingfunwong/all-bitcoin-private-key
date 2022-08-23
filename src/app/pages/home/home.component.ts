@@ -114,4 +114,8 @@ export class HomeComponent implements OnInit {
     const balance = balanceList[address as any];
     return balance ? balance[type] : 0;
   }
+
+  getBalanceClass(balance: number | null) {
+    return balance ? 'text-slate-900' : 'text-slate-400';
+  }
 }

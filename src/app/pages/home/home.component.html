@@ -23,10 +23,16 @@
             >{{ item.addressUnCompressed }}</a
           >
         </td>
-        <td class="px-4 py-2">
+        <td
+          class="px-4 py-2"
+          [ngClass]="getBalanceClass(item.addressUnCompressedBalance)"
+        >
           {{ item.addressUnCompressedBalance | balance }}
         </td>
-        <td class="px-4 py-2">
+        <td
+          class="px-4 py-2"
+          [ngClass]="getBalanceClass(item.addressUnCompressedReceived)"
+        >
           {{ item.addressUnCompressedReceived | balance }}
         </td>
         <td class="px-4 py-2">
@@ -39,8 +45,16 @@
             >{{ item.addressCompressed }}</a
           >
         </td>
-        <td class="px-4 py-2">{{ item.addressCompressedBalance | balance }}</td>
-        <td class="px-4 py-2">
+        <td
+          class="px-4 py-2"
+          [ngClass]="getBalanceClass(item.addressCompressedBalance)"
+        >
+          {{ item.addressCompressedBalance | balance }}
+        </td>
+        <td
+          class="px-4 py-2"
+          [ngClass]="getBalanceClass(item.addressCompressedReceived)"
+        >
           {{ item.addressCompressedReceived | balance }}
         </td>
       </tr>
