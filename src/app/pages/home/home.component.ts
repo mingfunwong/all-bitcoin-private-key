@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import BigNumber from 'bignumber.js';
 import { firstValueFrom } from 'rxjs';
 import { AllKeyService } from 'src/app/services/all-key.service';
 import { BalanceService } from 'src/app/services/balance.service';
@@ -25,15 +24,13 @@ export class HomeComponent implements OnInit {
 
   items: IAllKey[] = [];
 
-  maxNumber = new BigNumber(
-    'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
-    16
-  );
+  maxNumber =
+    0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn;
 
-  page = '1';
+  page = 1n;
   limitPerPage = 16;
-  resultsLength = this.maxNumber.toString(10);
-  maxPage = this.maxNumber.dividedBy(this.limitPerPage).toFixed(0);
+  resultsLength = this.maxNumber.toString();
+  maxPage = this.maxNumber / BigInt(this.limitPerPage);
 
   isLoadingResults = true;
   isError = false;
@@ -47,22 +44,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParamMap.subscribe((params) => {
-      this.page = params.get('page') || '1';
+      this.page = BigInt(params.get('page') || '1');
       this.getData();
     });
   }
 
   onOlder() {
-    this.page = new BigNumber(this.page).minus(1).toString(10);
-    if (this.page === '0') {
-      this.page = '1';
+    this.page = this.page - 1n;
+    if (this.page === 0n) {
+      this.page = 1n;
     }
     this.router.navigate(['/home'], { queryParams: { page: this.page } });
   }
 
   onNewer() {
-    this.page = new BigNumber(this.page).plus(1).toString(10);
-    if (new BigNumber(this.page).isGreaterThan(this.maxPage)) {
+    this.page = this.page + 1n;
+    if (this.page >= this.maxPage) {
       this.page = this.maxPage;
     }
     this.router.navigate(['/home'], { queryParams: { page: this.page } });

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import BigNumber from 'bignumber.js';
 import { IAllKey } from '../types/IAllKey';
 
 declare var Bitcoin: { ECKey: new (arg0: any) => any },
@@ -9,15 +8,16 @@ declare var Bitcoin: { ECKey: new (arg0: any) => any },
   providedIn: 'root',
 })
 export class AllKeyService {
-  getData(page: string, limitPerPage: number): IAllKey[] {
+  getData(page: bigint, limitPerPage: number): IAllKey[] {
     const items: IAllKey[] = [];
     const addresses: string[] = [];
     for (let index = 0; index < limitPerPage; index++) {
-      const id = new BigNumber(page)
-        .minus(1)
-        .multipliedBy(limitPerPage)
-        .plus(index + 1)
-        .toString(16);
+      const id = (
+        (page - 1n) * BigInt(limitPerPage) +
+        BigInt(index) +
+        1n
+      ).toString(16);
+
       const addressUnCompressed = this.getAddress(id, false);
       const addressCompressed = this.getAddress(id, true);
       const privateKey = this.getPrivateKey(id);
