@@ -2,7 +2,10 @@
   <table class="table-auto w-full font-mono font-light">
     <thead class="text-gray-500 border-b border-b-slate-200">
       <tr>
-        <td *ngFor="let column of tableHeaderColumns" class="px-4 py-2">
+        <td
+          *ngFor="let column of tableHeaderColumns"
+          class="px-4 py-2 whitespace-nowrap"
+        >
           {{ column }}
         </td>
       </tr>
@@ -12,8 +15,8 @@
         *ngFor="let item of items"
         class="hover:bg-slate-100 border-b border-b-slate-100"
       >
-        <td class="px-4 py-2">{{ item.privateKey }}</td>
-        <td class="px-4 py-2">
+        <td class="px-4 py-2 whitespace-nowrap">{{ item.privateKey }}</td>
+        <td class="px-4 py-2 whitespace-nowrap">
           <a
             href="https://www.blockchain.com/btc/address/{{
               item.addressUnCompressed
@@ -24,18 +27,18 @@
           >
         </td>
         <td
-          class="px-4 py-2"
+          class="px-4 py-2 whitespace-nowrap"
           [ngClass]="getBalanceClass(item.addressUnCompressedBalance)"
         >
           {{ item.addressUnCompressedBalance | balance }}
         </td>
         <td
-          class="px-4 py-2"
+          class="px-4 py-2 whitespace-nowrap"
           [ngClass]="getBalanceClass(item.addressUnCompressedReceived)"
         >
           {{ item.addressUnCompressedReceived | balance }}
         </td>
-        <td class="px-4 py-2">
+        <td class="px-4 py-2 whitespace-nowrap">
           <a
             href="https://www.blockchain.com/btc/address/{{
               item.addressCompressed
@@ -46,13 +49,13 @@
           >
         </td>
         <td
-          class="px-4 py-2"
+          class="px-4 py-2 whitespace-nowrap"
           [ngClass]="getBalanceClass(item.addressCompressedBalance)"
         >
           {{ item.addressCompressedBalance | balance }}
         </td>
         <td
-          class="px-4 py-2"
+          class="px-4 py-2 whitespace-nowrap"
           [ngClass]="getBalanceClass(item.addressCompressedReceived)"
         >
           {{ item.addressCompressedReceived | balance }}
@@ -64,14 +67,14 @@
   <div class="flex justify-between p-4">
     <button
       (click)="onOlder()"
-      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 focus:ring-2 focus:ring-slate-200 rounded"
+      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 whitespace-nowrap focus:ring-2 focus:ring-slate-200 rounded"
     >
       ← Older
     </button>
     <div>{{ page }} of {{ maxPage }}</div>
     <button
       (click)="onNewer()"
-      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 focus:ring-2 focus:ring-slate-200 rounded"
+      class="border border-b-slate-200 hover:bg-slate-100 px-4 py-2 whitespace-nowrap focus:ring-2 focus:ring-slate-200 rounded"
     >
       Newer →
     </button>
