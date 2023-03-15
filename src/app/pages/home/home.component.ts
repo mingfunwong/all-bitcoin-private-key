@@ -25,11 +25,10 @@ export class HomeComponent implements OnInit {
   items: IAllKey[] = [];
 
   maxNumber =
-    0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffn;
+    0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140n; // secp256k1_n - 1
 
   page = 1n;
   limitPerPage = 16;
-  resultsLength = this.maxNumber.toString();
   maxPage = this.maxNumber / BigInt(this.limitPerPage);
 
   isLoadingResults = true;
