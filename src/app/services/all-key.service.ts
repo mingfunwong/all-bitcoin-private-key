@@ -12,11 +12,15 @@ export class AllKeyService {
     const items: IAllKey[] = [];
     const addresses: string[] = [];
     for (let index = 0; index < limitPerPage; index++) {
-      const id = (
+      let id = (
         (page - 1n) * BigInt(limitPerPage) +
         BigInt(index) +
         1n
       ).toString(16);
+
+      if (id.length % 2 !== 0) {
+        id = '0' + id;
+      }
 
       const addressUnCompressed = this.getAddress(id, false);
       const addressCompressed = this.getAddress(id, true);
@@ -46,7 +50,7 @@ export class AllKeyService {
   }
 
   private getPrivateKey(id: string) {
-    const bytes = Crypto.util.hexToBytes(id.toString());
+    const bytes = Crypto.util.hexToBytes(id);
     const btcKey = new Bitcoin.ECKey(bytes);
     const privateKey = btcKey.getExportedPrivateKey();
     return privateKey;
