@@ -112,6 +112,6 @@ export class HomeComponent implements OnInit {
   }
 
   getBalanceClass(balance: number | null) {
-    return balance ? 'text-slate-900' : 'text-slate-400';
+    return balance ? 'text-green-500 font-semibold' : 'text-slate-400';
   }
 }
